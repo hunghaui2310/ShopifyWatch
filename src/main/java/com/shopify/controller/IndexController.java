@@ -8,6 +8,13 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String index() {
+		System.out.println("Called to index");
 		return "index";
 	}
+	
+//	@GetMapping("/login")
+//	public String login() {
+//		System.out.println("Called to login");
+//		return "/view/client/view/login";
+//	}
 }

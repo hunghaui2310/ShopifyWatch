@@ -8,7 +8,7 @@
 </head>
 <body>
 		<h1>Welcome</h1>
-      <h2>${message}</h2>
+      <h2>Success</h2>
       
     
 </body>
