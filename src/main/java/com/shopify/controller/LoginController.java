@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopify.model.User;
@@ -18,9 +20,10 @@ import com.shopify.service.UserService;
 import com.shopify.service.impl.UserServiceImpl;
 import com.shopify.util.Constant;
 
-@WebServlet(urlPatterns="/login")
+@Controller
 public class LoginController extends HttpServlet {
 	@Override
+	@GetMapping("/login")
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Called to login");
 		HttpSession session = req.getSession(false);
@@ -41,9 +44,11 @@ public class LoginController extends HttpServlet {
 			}
 		}
 
-		req.getRequestDispatcher("view/client/view/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("./view/client/view/login.jsp").forward(req, resp);
 	}
+
 	@Override
+	@PostMapping("/login")
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		  String username = req.getParameter("username");
 	        
