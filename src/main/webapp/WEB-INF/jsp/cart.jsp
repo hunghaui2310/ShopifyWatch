@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
-    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
     <title>Cart - F1Shop</title>
 </head>
 <body>
@@ -43,18 +43,18 @@
                         <th>Xóa</th>
                     </tr>
                     <tr>
-                        <td><img src="<c:url value="/images/sp1.1.jpg"/>" alt=""></td>
+                        <td><img src="${contextPath}/resources/images/sp1.1.jpg" alt=""></td>
                         <td><p>Quần sooc bò đen MS 23E2616</p></td>
-                        <td><img src="<c:url value="/images/spcolor.png"/>" alt=""></td>
+                        <td><img src="${contextPath}/resources/images/spcolor.png" alt=""></td>
                         <td><p>L</p></td>
                         <td><input type="number" value="1" min="1"></td>
                         <td><p>489.000 <sup>đ</sup></p></td>
                         <td><span>X</span></td>
                     </tr>
                     <tr>
-                        <td><img src="<c:url value="/images/sp2.jpg"/>" alt=""></td>
+                        <td><img src="${contextPath}/resources/images/sp2.jpg" alt=""></td>
                         <td><p>Quần sooc bò đen MS 23E2616</p></td>
-                        <td><img src="<c:url value="/images/spcolor.png"/>" alt=""></td>
+                        <td><img src="${contextPath}/resources/images/spcolor.png" alt=""></td>
                         <td><p>L</p></td>
                         <td><input type="number" value="1" min="1"></td>
                         <td><p>489.000 <sup>đ</sup></p></td>
@@ -98,6 +98,5 @@
     </div>
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
-<script src="<c:url value="/js/script.js"/>"></script>
 </body>
 </html>

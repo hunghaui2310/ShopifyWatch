@@ -1,8 +1,14 @@
 package com.shopify.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "tbl_category")
 public class Category implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 

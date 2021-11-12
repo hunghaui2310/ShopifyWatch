@@ -1,14 +1,23 @@
 package com.shopify.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "tbl_product")
 public class Product implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private long price;
 	private String image;
 	private String des;
-	private Category category;//cate_id
+
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 	
 
 	public Product() {
