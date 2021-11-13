@@ -1,4 +1,4 @@
-package com.shopify.service;
+package com.shopify.service.security;
 
 
 import com.shopify.model.Role;

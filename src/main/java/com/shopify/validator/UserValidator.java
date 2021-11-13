@@ -1,7 +1,7 @@
 package com.shopify.validator;
 
 import com.shopify.model.User;
-import com.shopify.service.UserService;
+import com.shopify.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

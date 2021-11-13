@@ -1,8 +1,8 @@
 package com.shopify.controller;
 
 import com.shopify.model.User;
-import com.shopify.service.SecurityService;
-import com.shopify.service.UserService;
+import com.shopify.service.security.SecurityService;
+import com.shopify.service.security.UserService;
 import com.shopify.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

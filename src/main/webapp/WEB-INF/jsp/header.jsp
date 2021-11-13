@@ -9,6 +9,8 @@
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+<%--    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Home - F1Shop</title>
 </head>
 <body>
@@ -20,39 +22,43 @@
             </div>
             <div class="top-menu-items">
                 <ul>
-                    <li>Nữ
-                        <ul class="top-menu-item">
-                            <li>
-                                <a href="">Hàng nữ mới về</a>
-                            </li>
-                            <li>
-                                <a href="">Hướng dương đón nắng</a>
-                            </li>
-                            <li>
-                                <a href="">Áo nữ</a>
-                            </li>
-                            <li>
-                                <a href="">Váy nữ</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>Nam
-                        <ul class="top-menu-item">
-                            <li>
-                                <a href="">Hàng Nam mới về</a>
-                            </li>
-                            <li>
-                                <a href="">Áo nam</a>
-                            </li>
+<%--                    <li><a href="${contextPath}/product?category=2">Nữ</a>--%>
+<%--                        <ul class="top-menu-item">--%>
+<%--                            <li>--%>
+<%--                                <a href="">Hàng nữ mới về</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="">Hướng dương đón nắng</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="">Áo nữ</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="">Váy nữ</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
+<%--                    <li><a href="${contextPath}/product?category=1">Nam</a>--%>
+<%--                        <ul class="top-menu-item">--%>
+<%--                            <li>--%>
+<%--                                <a href="">Hàng Nam mới về</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="">Áo nam</a>--%>
+<%--                            </li>--%>
 
-                            <li>
-                                <a href="">Quần nam</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>Trẻ em</li>
-                    <li>Flast sale</li>
-                    <li>Hot items</li>
+<%--                            <li>--%>
+<%--                                <a href="">Quần nam</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
+<%--                    <li>Trẻ em</li>--%>
+<%--                    <li>Flast sale</li>--%>
+<%--                    <li>Hot items</li>--%>
+
+                    <c:forEach items="${categories}" var="category">
+                        <li><a href="${contextPath}/product?category=${category.id}">${category.name}</a></li>
+                    </c:forEach>
                     <li>Bộ sưu tập</li>
 
                     <li>Thông tin</li>

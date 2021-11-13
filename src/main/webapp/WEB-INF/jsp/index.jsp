@@ -9,7 +9,6 @@
 <head>
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <title>Home - F1Shop</title>
 </head>
 <body>

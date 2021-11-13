@@ -1,4 +1,4 @@
-package com.shopify.service;
+package com.shopify.service.security;
 
 public interface SecurityService {
     String findLoggedInUsername();

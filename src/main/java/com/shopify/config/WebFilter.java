@@ -1,18 +1,40 @@
 package com.shopify.config;
 
-import org.springframework.web.filter.OncePerRequestFilter;
+import com.shopify.repo.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 
-public class WebFilter extends OncePerRequestFilter {
+@Component
+public class WebFilter implements Filter {
+
+    private final String[] EXCLUDE_URL = new String[]{"resources"};
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("Called here");
-        filterChain.doFilter(request, response);
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        if (Arrays.stream(EXCLUDE_URL).noneMatch(item -> request.getRequestURL().toString().contains(item))) {
+            request.setAttribute("username", getUserLogin(request));
+            request.setAttribute("categories", categoryRepository.findAll());
+        }
+        filterChain.doFilter(request, servletResponse);
+    }
+
+    private String getUserLogin(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            if (request.getUserPrincipal() != null) {
+                return request.getUserPrincipal().getName();
+            }
+        }
+        return "";
     }
 }
