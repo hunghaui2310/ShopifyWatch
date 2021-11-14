@@ -10,13 +10,13 @@
       <meta charset="utf-8">
       <title>Log in with your account</title>
 
-      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+<%--      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">--%>
+<%--      <link href="${contextPath}/resources/css/common.css" rel="stylesheet">--%>
   </head>
 
   <body>
-
-    <div class="container">
+  <jsp:include page="header.jsp"></jsp:include>
+    <div class="container pt-20 pb-10">
       <form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
 
@@ -29,12 +29,10 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+            <h4 class="text-center pt-4"><a href="${contextPath}/registration">Create an account</a></h4>
         </div>
       </form>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+  <jsp:include page="footer.jsp"></jsp:include>
   </body>
 </html>

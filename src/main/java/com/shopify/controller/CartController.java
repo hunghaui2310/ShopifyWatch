@@ -46,20 +46,12 @@ public class CartController {
             cartItemDto.setQuantity(cartItem.getQuantity());
             cartItemDto.setUnitPrice(cartItem.getUnitPrice());
             cartItemDto.setTotalMoney(cartItem.getQuantity() * cartItem.getUnitPrice());
+            cartItemDto.setProductId(cartItem.getProduct().getId());
             total += cartItemDto.getTotalMoney();
             cartItemDtos.add(cartItemDto);
         }
         modelMap.addAttribute("carts", cartItemDtos);
         modelMap.addAttribute("total", total);
         return "cart";
-    }
-
-    @GetMapping("")
-    public String addToCart(@RequestParam Integer productId, HttpServletRequest request) {
-        UserDetails userDetails = AppUtil.getCurrentUser();
-        User user = userRepository.findByUsername(userDetails.getUsername());
-        cartItemService.addToCart(productId, user);
-        System.out.println("request = " + request.getRequestURL().toString());
-        return request.getRequestURL().toString();
     }
 }

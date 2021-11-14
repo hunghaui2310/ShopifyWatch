@@ -49,7 +49,7 @@
                             <td><p>${cart.unitPrice}</p></td>
                                 <%--                            <td><img src="${contextPath}/resources/images/spcolor.png" alt=""></td>--%>
                                 <%--                            <td><p>L</p></td>--%>
-                            <td><input type="number" value="${cart.quantity}" min="1"></td>
+                            <td><input type="number" onchange="changeQuantity(${cart.id})" id="val_${cart.id}" value="${cart.quantity}" min="1"></td>
                             <td><p>${cart.totalMoney} <sup>đ</sup></p></td>
                             <td><span>X</span></td>
                         </tr>
@@ -64,8 +64,8 @@
                     <%--                        <td><span>X</span></td>--%>
                     <%--                    </tr>--%>
                 </table>
-                <div class="cart-content-right-button mt-2">
-
+                <div class="cart-content-right-button text-right mt-2">
+                    <button type="button" id="updateCartBtn" onclick="updateCart()">CẬP NHẬT GIỎ HÀNG</button>
                 </div>
             </div>
             <div class="cart-content-right">
@@ -104,5 +104,34 @@
     </div>
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
+<script type="text/javascript">
+    const mapValByProduct = new Map();
+
+    function changeQuantity(cartItemId) {
+        const quantity = document.getElementById('val_' + cartItemId).value;
+        mapValByProduct.set(cartItemId, quantity);
+    }
+    function updateCart() {
+        var base_url = window.location.origin;
+        const cartItems = [];
+        for (const [key, value] of mapValByProduct) {
+            cartItems.push({cartItemId: key, quantity: value})
+        }
+        $.ajax({
+            type: "POST",
+            url: base_url + '/cart/updateCart',
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(cartItems),
+            success: function (res) {
+                if (res === true) {
+                    location.reload();
+                } else {
+                    window.location.href = base_url + '/login';
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

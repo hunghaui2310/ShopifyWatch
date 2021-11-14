@@ -35,6 +35,15 @@ public class CartItemService {
         return cartItemRepository.findAllByCart_Id(cart.getId());
     }
 
+    public CartItem getById(Integer id) {
+        return cartItemRepository.getById(id);
+    }
+
+    @Transactional
+    public CartItem updateCartItem(CartItem cartItem) {
+        return cartItemRepository.save(cartItem);
+    }
+
     @Transactional
     public void addToCart(Integer productId, User user) {
         Cart cart;

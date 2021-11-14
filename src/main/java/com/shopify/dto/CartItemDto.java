@@ -8,6 +8,7 @@ public class CartItemDto {
     private int quantity;
     private long unitPrice;
     private long totalMoney;
+    private Integer productId;
 
     public Integer getId() {
         return id;
@@ -55,5 +56,13 @@ public class CartItemDto {
 
     public void setTotalMoney(long totalMoney) {
         this.totalMoney = totalMoney;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 }

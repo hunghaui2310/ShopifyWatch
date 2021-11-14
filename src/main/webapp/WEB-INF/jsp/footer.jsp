@@ -34,5 +34,8 @@
     </div>
 </section>
 <script src="${contextPath}/resources/js/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<%--<script src="${contextPath}/resources/js/bootstrap.min.js"></script>--%>
+<%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>--%>
 </body>
 </html>

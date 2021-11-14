@@ -1009,7 +1009,12 @@ a{
 .pt-10 {
     padding-top: 100px;
 }
-
+.pt-20 {
+    padding-top: 200px;
+}
+.pb-10 {
+    padding-bottom: 100px;
+}
 .form-signin {
     max-width: 330px;
     padding: 15px;

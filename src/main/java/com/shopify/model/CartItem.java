@@ -64,6 +64,11 @@ public class CartItem {
 	public CartItem() {
 	}
 
+	public CartItem(Integer id, int quantity) {
+		this.id = id;
+		this.quantity = quantity;
+	}
+
 	public CartItem(int quantity, long unitPrice, Product product, Cart cart) {
 		this.quantity = quantity;
 		this.unitPrice = unitPrice;

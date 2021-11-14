@@ -9,13 +9,14 @@
     <meta charset="utf-8">
     <title>Create an account</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+<%--    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">--%>
+<%--    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">--%>
 </head>
 
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 
-<div class="container">
+<div class="container pt-20 pb-10">
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
@@ -46,8 +47,9 @@
     </form:form>
 
 </div>
+<jsp:include page="footer.jsp"></jsp:include>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>--%>
+<%--<script src="${contextPath}/resources/js/bootstrap.min.js"></script>--%>
 </body>
 </html>

@@ -5,8 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions"
            prefix="fn" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<c:set var="req" value="${pageContext.request}" />
-<c:set var="baseURL" value="${fn:replace(req.requestURL, req.requestURI, '')}" />
+<c:set var="req" value="${pageContext.request}"/>
+<c:set var="baseURL" value="${fn:replace(req.requestURL, req.requestURI, '')}"/>
 <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
 <c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <c:set var="pageUrl" value="${ baseURL }${ requestPath }${ not empty params?'?'+=params:'' }"/>
@@ -31,7 +31,9 @@
                 <img src="${contextPath}/resources/images/${product.image}" alt="">
                 <div class="d-flex justify-content-center align-items-center">
                     <h1>${product.name}</h1>
-                    <a title="Thêm vào giỏ" class="ml-2" href="/cart/add?productId=${product.id}"><i title="Thêm vào giỏ" class="fas fa-shopping-cart"></i></a>
+                    <button title="Thêm vào giỏ" class="ml-2" onclick="addToCart(${product.id})"><i title="Thêm vào giỏ"
+                                                                                                    class="fas fa-shopping-cart"></i>
+                    </button>
                 </div>
                 <p>${product.price}<sup>đ</sup></p>
             </div>
@@ -67,7 +69,8 @@
             <ul class="pagination">
                 <c:if test="${currentPage != 1}">
                     <li class="page-item">
-                        <a class="page-link" href="<my:replaceParam name='page' value='${currentPage - 1}'/>" aria-label="Previous">
+                        <a class="page-link" href="<my:replaceParam name='page' value='${currentPage - 1}'/>"
+                           aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -79,13 +82,15 @@
                             <li class="page-item"><a class="page-link">${i}</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li class="page-item"><a class="page-link" href="<my:replaceParam name='page' value='${i}'/>">${i}</a></li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="<my:replaceParam name='page' value='${i}'/>">${i}</a></li>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
                 <c:if test="${currentPage lt noOfPages}">
                     <li class="page-item">
-                        <a class="page-link" aria-label="Next" href="<my:replaceParam name='page' value='${currentPage + 1}'/>">
+                        <a class="page-link" aria-label="Next"
+                           href="<my:replaceParam name='page' value='${currentPage + 1}'/>">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -93,22 +98,47 @@
                 </c:if>
             </ul>
         </nav>
-        <%--        <table border="1" cellpadding="5" cellspacing="5">--%>
-        <%--            <tr>--%>
-        <%--                <c:forEach begin="1" end="${noOfPages}" var="i">--%>
-        <%--                    <c:choose>--%>
-        <%--                        <c:when test="${currentPage eq i}">--%>
-        <%--                            <td>${i}</td>--%>
-        <%--                        </c:when>--%>
-        <%--                        <c:otherwise>--%>
-        <%--                            <td><a href="product?page=${i}">${i}</a></td>--%>
-        <%--                        </c:otherwise>--%>
-        <%--                    </c:choose>--%>
-        <%--                </c:forEach>--%>
-        <%--            </tr>--%>
-        <%--        </table>--%>
+<%--        toast--%>
+        <div class="toast-container" style="position: absolute; bottom: 20px; right: 10px;">
+
+            <div class="toast bg-info text-dark" id="myToast">
+                <div class="toast-header bg-info text-dark">
+                    <strong class="me-auto"><i class="fas fa-check"></i> Add success</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    Product Added To Cart. Please check <a href="/cart">your cart</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
+<script>
+    $(document).ready(function(){
+            // Passing option
+            $("#myToast").toast({
+                autohide: false
+            });
+    });
+    function addToCart(productId) {
+        var base_url = window.location.origin;
+        var finalUrl = base_url + '/cart/addToCart/' + productId;
+        $.ajax({
+            url: finalUrl,
+            cache: false,
+            success: function (res) {
+                if (res === true) {
+                    $("#myToast").toast("show");
+                    setTimeout(function off() {
+                        $("#myToast").toast("hide");
+                    }, 3000);
+                } else {
+                    window.location.href = base_url + '/login';
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
