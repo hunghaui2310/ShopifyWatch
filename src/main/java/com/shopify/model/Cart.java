@@ -2,21 +2,21 @@ package com.shopify.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.Instant;
 
 @Entity
 @Table(name = "tbl_cart")
 public class Cart implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	private Date buyDate;
+	private Instant buyDate;
 
 	public Integer getId() {
 		return id;
@@ -34,11 +34,21 @@ public class Cart implements Serializable {
 		this.user = user;
 	}
 
-	public Date getBuyDate() {
+	public Instant getBuyDate() {
 		return buyDate;
 	}
 
-	public void setBuyDate(Date buyDate) {
+	public void setBuyDate(Instant buyDate) {
 		this.buyDate = buyDate;
 	}
+
+	public Cart() {
+	}
+
+	public Cart(User user, Instant buyDate) {
+		this.user = user;
+		this.buyDate = buyDate;
+	}
+
+
 }

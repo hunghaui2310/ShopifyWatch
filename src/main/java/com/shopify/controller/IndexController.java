@@ -25,15 +25,7 @@ public class IndexController {
 	private CategoryRepository categoryRepository;
 
 	@GetMapping("/")
-	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException, ServletException {
-//		HttpSession session = request.getSession(false);
-//		if (session != null) {
-//			if (request.authenticate(response)) {
-//				Principal userPrincipal = request.getUserPrincipal();
-//				modelMap.addAttribute("username",userPrincipal.getName());
-//			}
-//		}
-//		modelMap.addAttribute("categories", categoryRepository.findAll());
+	public String index() {
 		return "index";
 	}
 

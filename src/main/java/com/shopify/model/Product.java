@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class Product implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String name;
 	private long price;
 	private String image;

@@ -31,7 +31,7 @@
                 <img src="${contextPath}/resources/images/${product.image}" alt="">
                 <div class="d-flex justify-content-center align-items-center">
                     <h1>${product.name}</h1>
-                    <a title="Thêm vào giỏ" class="ml-2" href="/cart/?productId=${product.id}"><i title="Thêm vào giỏ" class="fas fa-shopping-cart"></i></a>
+                    <a title="Thêm vào giỏ" class="ml-2" href="/cart/add?productId=${product.id}"><i title="Thêm vào giỏ" class="fas fa-shopping-cart"></i></a>
                 </div>
                 <p>${product.price}<sup>đ</sup></p>
             </div>
