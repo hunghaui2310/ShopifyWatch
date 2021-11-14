@@ -18,7 +18,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    private final int SIZE = 2;
+    private final int SIZE = 20;
 
     @GetMapping()
     public String getProductPage(Model modelMap, HttpServletRequest request) {
