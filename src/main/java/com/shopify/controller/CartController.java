@@ -54,4 +54,13 @@ public class CartController {
         modelMap.addAttribute("total", total);
         return "cart";
     }
+
+//    @GetMapping("")
+//    public String addToCart(@RequestParam Integer productId, HttpServletRequest request) {
+//        UserDetails userDetails = AppUtil.getCurrentUser();
+//        User user = userRepository.findByUsername(userDetails.getUsername());
+//        cartItemService.addToCart(productId, user);
+//        System.out.println("request = " + request.getRequestURL().toString());
+//        return request.getRequestURL().toString();
+//    }
 }

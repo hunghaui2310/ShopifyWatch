@@ -33,44 +33,44 @@
     </div>
     <div class="container">
         <div class="delivery-content row">
-            <div class="delivery-content-left">
+            <div class="delivery-content-left pr-4">
                 <p>Vui lòng chọn địa chỉ giao hàng</p>
-                <div class="delivery-content-left-dangnhap row">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <p>Đăng nhập (Nếu bạn đã có tài khoản)</p>
-                </div>
-                <div class="delivery-content-left-khachle row">
-                    <input checked name="loaikhach" type="radio" >
-                    <p> <span style="font-weight: bold;">Khách lẻ</span> (Nếu bạn không muốn lưu lại thông tin)</p>
-                </div>
-                <div class="delivery-content-left-dangky row">
-                    <input  name="loaikhach" type="radio" >
-                    <p> <span style="font-weight: bold;">Đăng ký</span> (Tạo mới tài khoản với thông tin bên dưới)</p>
-                </div>
+<%--                <div class="delivery-content-left-dangnhap row">--%>
+<%--                    <i class="fas fa-sign-in-alt"></i>--%>
+<%--                    <p>Đăng nhập (Nếu bạn đã có tài khoản)</p>--%>
+<%--                </div>--%>
+<%--                <div class="delivery-content-left-khachle row">--%>
+<%--                    <input checked name="loaikhach" type="radio" >--%>
+<%--                    <p> <span style="font-weight: bold;">Khách lẻ</span> (Nếu bạn không muốn lưu lại thông tin)</p>--%>
+<%--                </div>--%>
+<%--                <div class="delivery-content-left-dangky row">--%>
+<%--                    <input  name="loaikhach" type="radio" >--%>
+<%--                    <p> <span style="font-weight: bold;">Đăng ký</span> (Tạo mới tài khoản với thông tin bên dưới)</p>--%>
+<%--                </div>--%>
                 <div class="delivery-content-left-input-top row">
                     <div class="delivery-content-left-input-top-item">
-                        <label for="">Họ tên <span style="color: red;">*</span></label>
-                        <input type="text">
+                        <label for="name">Họ tên <span style="color: red;">*</span></label>
+                        <input type="text" id="name" required>
                     </div>
                     <div class="delivery-content-left-input-top-item">
-                        <label for="">Điện thoại <span style="color: red;">*</span></label>
-                        <input type="text">
+                        <label for="phoneNumber">Điện thoại <span style="color: red;">*</span></label>
+                        <input type="text" id="phoneNumber" required>
                     </div>
-                    <div class="delivery-content-left-input-top-item">
-                        <label for="">Tỉnh/Tp <span style="color: red;">*</span></label>
-                        <input type="text">
-                    </div>
-                    <div class="delivery-content-left-input-top-item">
-                        <label for="">Quận/Huyện <span style="color: red;">*</span></label>
-                        <input type="text">
-                    </div>
+<%--                    <div class="delivery-content-left-input-top-item">--%>
+<%--                        <label for="">Tỉnh/Tp <span style="color: red;">*</span></label>--%>
+<%--                        <input type="text">--%>
+<%--                    </div>--%>
+<%--                    <div class="delivery-content-left-input-top-item">--%>
+<%--                        <label for="">Quận/Huyện <span style="color: red;">*</span></label>--%>
+<%--                        <input type="text">--%>
+<%--                    </div>--%>
                 </div>
-                <div class="delivery-content-left-input-bottom">
-                    <label for="">Địa chỉ <span style="color: red;">*</span></label>
-                    <input type="text">
+                <div class="delivery-content-left-input-bottom row">
+                    <label for="address">Địa chỉ <span style="color: red;">*</span></label>
+                    <input type="text" required id="address">
                 </div>
                 <div class="delivery-content-left-button row">
-                    <a href=""><span>«</span><p>Quay lại giỏ hàng</p></a>
+                    <a href="/cart"><span>«</span><p>Quay lại giỏ hàng</p></a>
                     <button><p style="font-weight: bold;">THANH TOÁN VÀ GIAO HÀNG</p></button>
                 </div>
             </div>

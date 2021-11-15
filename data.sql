@@ -51,6 +51,14 @@ create table tbl_cart_item
     product_id int null
 );
 
+create table tbl_delivery
+(
+    id         int auto_increment primary key,
+    name varchar(50) null,
+    phone_number   varchar(20) null,
+    address     varchar(255) null,
+    user_id int null
+);
 
 
 -- auto-generated definition
@@ -84,3 +92,18 @@ create table tbl_user_roles
         foreign key (roles_id) references tbl_role (id)
 );
 
+create table tbl_delivery_product
+(
+    id         int auto_increment primary key,
+    quantity   int null,
+    unitPrice     int null,
+    product_id int null
+);
+
+create table tbl_delivery_product_relation
+(
+    id         int auto_increment primary key,
+    delivery_id   int null,
+    delivery_product_id     int null
+);
+ALTER table tbl_delivery_product_relation add unique unique_delivery_produdct(delivery_id, delivery_product_id)
