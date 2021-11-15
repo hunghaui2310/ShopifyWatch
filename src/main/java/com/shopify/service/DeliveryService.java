@@ -1,5 +1,6 @@
 package com.shopify.service;
 
+import com.shopify.dto.CartDto;
 import com.shopify.dto.CartItemDto;
 import com.shopify.dto.DeliveryDto;
 import com.shopify.model.Delivery;
@@ -20,26 +21,29 @@ public class DeliveryService {
     private final UserRepository userRepository;
     private final DeliveryProductService deliveryProductService;
     private final DeliveryProductRelaRepository deliveryProductRelaRepository;
+    private final CartItemService cartItemService;
 
     @Autowired
     public DeliveryService(DeliveryRepository deliveryRepository,
                            DeliveryProductService deliveryProductService,
                            DeliveryProductRelaRepository deliveryProductRelaRepository,
+                           CartItemService cartItemService,
                            UserRepository userRepository) {
         this.deliveryRepository = deliveryRepository;
         this.userRepository = userRepository;
         this.deliveryProductService = deliveryProductService;
+        this.cartItemService = cartItemService;
         this.deliveryProductRelaRepository = deliveryProductRelaRepository;
     }
 
     @Transactional
-    public void save(DeliveryDto deliveryDto, String username) {
+    public void save(Delivery delivery, String username) {
+        CartDto cartDto = cartItemService.getCartItems();
         User user = userRepository.findByUsername(username);
-        Delivery deliDto = deliveryDto.getDelivery();
-        Delivery delivery = deliveryRepository.save(new Delivery(deliDto.getName(), deliDto.getPhoneNumber(), deliDto.getAddress(), user));
-        for (CartItemDto cartItemDto : deliveryDto.getCartItemDtos()) {
+        Delivery deliveryOut = deliveryRepository.save(new Delivery(delivery.getName(), delivery.getPhoneNumber(), delivery.getAddress(), user));
+        for (CartItemDto cartItemDto : cartDto.getCartItemDtos()) {
             DeliveryProduct deliveryProduct = deliveryProductService.save(cartItemDto);
-            deliveryProductRelaRepository.save(new DeliveryProductRelation(delivery, deliveryProduct));
+            deliveryProductRelaRepository.save(new DeliveryProductRelation(deliveryOut, deliveryProduct));
         }
         return;
     }

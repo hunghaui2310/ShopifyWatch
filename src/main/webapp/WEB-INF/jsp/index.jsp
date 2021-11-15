@@ -8,7 +8,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
     <title>Home - F1Shop</title>
 </head>
 <body>

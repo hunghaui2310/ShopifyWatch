@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
-    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
     <title>Payment - F1Shop</title>
 </head>
 <body>
@@ -48,21 +48,21 @@
                         <label for="">Thanh toán bằng thẻ tín dụng(OnePay)</label>
                     </div>
                     <div class="payment-content-left-method-payment-item-img">
-                        <img src="<c:url value="/images/visa.png"/>" alt="">
+                        <img src="${contextPath}/resources/images/visa.jpg" alt="">
                     </div>
                     <div class="payment-content-left-method-payment-item">
                         <input checked name="method-payment" type="radio">
                         <label for=""> Thanh toán bằng thẻ ATM(OnePay)</label>
                     </div>
                     <div class="payment-content-left-method-payment-item-img">
-                        <img src="<c:url value="/images/vcb.png"/>" alt="">
+                        <img src="${contextPath}/resources/images/vcb.png" alt="">
                     </div>
                     <div class="payment-content-left-method-payment-item">
                         <input name="method-payment" type="radio">
                         <label for="">  Thanh toán Momo</label>
                     </div>
                     <div class="payment-content-left-method-payment-item-img">
-                        <img src="<c:url value="/images/momo.png"/>" alt="">
+                        <img src="${contextPath}/resources/images/momo.png" alt="">
                     </div>
                     <div class="payment-content-left-method-payment-item">
                         <input name="method-payment" type="radio">
@@ -98,6 +98,5 @@
 </section>
 
 <jsp:include page="footer.jsp"></jsp:include>
-<script src="<c:url value="/js/script.js"/>"></script>
 </body>
 </html>
