@@ -38,9 +38,4 @@ public class IndexController {
 	public String category(Model modelMap) {
 		return "category";
 	}
-
-	@GetMapping("/delivery")
-	public String delivery(Model model) {
-		return "delivery";
-	}
 }
