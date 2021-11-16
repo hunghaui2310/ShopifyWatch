@@ -25,4 +25,9 @@ public class ProductService {
             return productRepository.findAllByCategory_Id(pageable, categoryId);
         }
     }
+
+    public Page<Product> searchByName(int page, int size, String name) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findAllByNameContaining(pageable, name);
+    }
 }

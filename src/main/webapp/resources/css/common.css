@@ -598,7 +598,7 @@ a{
 }
 .product-related-item p {
     font-size: 12px;
-    text-decoration: line-through;
+    /*text-decoration: line-through;*/
 }
 
 /* -----------------------Cart-------------------- */

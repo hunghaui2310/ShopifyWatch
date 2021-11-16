@@ -25,6 +25,7 @@
             <th scope="col">Địa chỉ</th>
             <th scope="col">Ngày đặt hàng</th>
             <th scope="col">Tổng số tiền</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -35,10 +36,41 @@
             <td>@mdo</td>
             <td>@mdo</td>
             <td>@mdo</td>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="openModal()">
+                Launch demo modal
+            </button></td>
         </tr>
         </tbody>
     </table>
+    <!-- Modal -->
+    <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
+<script>
+    function openModal() {
+        console.log('called here');
+        $('#exampleModalCenter').on('shown.bs.modal', function () {
+
+        })
+    }
+</script>
 </body>
 </html>

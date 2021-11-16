@@ -22,47 +22,23 @@
 <jsp:include page="header.jsp"></jsp:include>
 <!-- -----------------------SLlDER---------------------------------------------- -->
 <section class="product-related container">
-    <div class="product-related-title pt-10">
+    <div class="product-related-title pt-20">
         <p>SẢN PHẨM</p>
     </div>
-    <div class=" row product-content">
+    <c:if test="${products != null && products.size() > 0}">
+    <div class="row product-content">
         <c:forEach items="${products}" var="product">
             <div class="product-related-item">
                 <img src="${contextPath}/resources/images/${product.image}" alt="">
                 <div class="d-flex justify-content-center align-items-center">
                     <h1>${product.name}</h1>
-                    <button title="Thêm vào giỏ" class="ml-2" onclick="addToCart(${product.id})"><i title="Thêm vào giỏ"
+                    <button title="Thêm vào giỏ" class="ml-2 btn" onclick="addToCart(${product.id})"><i title="Thêm vào giỏ"
                                                                                                     class="fas fa-shopping-cart"></i>
                     </button>
                 </div>
                 <p>${product.price}<sup>đ</sup></p>
             </div>
         </c:forEach>
-        <%--        <div class="product-related-item">--%>
-        <%--            <img src="images/prl1.jpg" alt="">--%>
-        <%--            <h1>ÁO THUN CỔ TRÒN MS 57E2969</h1>--%>
-        <%--            <p>790.000<sup>đ</sup></p>--%>
-        <%--        </div>--%>
-        <%--        <div class="product-related-item">--%>
-        <%--            <img src="images/prl2.jpg" alt="">--%>
-        <%--            <h1>ÁO THUN CỔ TRÒN MS 57E2969</h1>--%>
-        <%--            <p>790.000<sup>đ</sup></p>--%>
-        <%--        </div>--%>
-        <%--        <div class="product-related-item">--%>
-        <%--            <img src="images/prl3.jpg" alt="">--%>
-        <%--            <h1>ÁO THUN CỔ TRÒN MS 57E2969</h1>--%>
-        <%--            <p>790.000<sup>đ</sup></p>--%>
-        <%--        </div>--%>
-        <%--        <div class="product-related-item">--%>
-        <%--            <img src="images/prl4.jpg" alt="">--%>
-        <%--            <h1>ÁO THUN CỔ TRÒN MS 57E2969</h1>--%>
-        <%--            <p>790.000<sup>đ</sup></p>--%>
-        <%--        </div>--%>
-        <%--        <div class="product-related-item">--%>
-        <%--            <img src="images/prl5.jpg" alt="">--%>
-        <%--            <h1>ÁO THUN CỔ TRÒN MS 57E2969</h1>--%>
-        <%--            <p>790.000<sup>đ</sup></p>--%>
-        <%--        </div>--%>
     </div>
     <div class="d-flex justify-content-center">
         <nav aria-label="Page navigation example">
@@ -103,15 +79,21 @@
 
             <div class="toast bg-info text-dark" id="myToast">
                 <div class="toast-header bg-info text-dark">
-                    <strong class="me-auto"><i class="fas fa-check"></i> Add success</strong>
+                    <strong class="me-auto"><i class="fas fa-check"></i> Thêm thành công</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
-                    Product Added To Cart. Please check <a href="/cart">your cart</a>
+                    Sản phẩm đã được thêm vào giỏ hàng thành công. Bạn có thể xem <a href="/cart">giỏ hàng của bạn</a>
                 </div>
             </div>
         </div>
     </div>
+    </c:if>
+    <c:if test="${products == null || products.size() == 0}">
+        <div class="row product-content">
+            <h3>Không có sản phẩm nào</h3>
+        </div>
+    </c:if>
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
 <script>
