@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DeliveryService {
 
@@ -40,11 +44,36 @@ public class DeliveryService {
     public void save(Delivery delivery, String username) {
         CartDto cartDto = cartItemService.getCartItems();
         User user = userRepository.findByUsername(username);
-        Delivery deliveryOut = deliveryRepository.save(new Delivery(delivery.getName(), delivery.getPhoneNumber(), delivery.getAddress(), user));
+        Delivery deliveryOut = deliveryRepository.save(new Delivery(delivery.getName(), delivery.getPhoneNumber(), delivery.getAddress(), user, Instant.now()));
         for (CartItemDto cartItemDto : cartDto.getCartItemDtos()) {
             DeliveryProduct deliveryProduct = deliveryProductService.save(cartItemDto);
             deliveryProductRelaRepository.save(new DeliveryProductRelation(deliveryOut, deliveryProduct));
         }
         return;
+    }
+
+    public List<Delivery> findByUserId(Long userId) {
+        return deliveryRepository.findAllByUser_Id(userId);
+    }
+
+    public long getTotalByDelivery(Integer deliveryId) {
+        long total = 0;
+        List<DeliveryProduct> deliveryProducts = deliveryProductService.getByDeliveryId(deliveryId);
+        for (DeliveryProduct deliveryProduct : deliveryProducts) {
+            long moneyOneRow = deliveryProduct.getQuantity() * deliveryProduct.getUnitPrice();
+            total += moneyOneRow;
+        }
+        return total;
+    }
+
+    public List<DeliveryDto> getDeliveryDtoByUser(Long userId) {
+        List<DeliveryDto> deliveryDtos = new ArrayList<>();
+        for (Delivery delivery : findByUserId(userId)) {
+            DeliveryDto deliveryDto = new DeliveryDto();
+            deliveryDto.setDelivery(delivery);
+            deliveryDto.setTotal(getTotalByDelivery(delivery.getId()));
+            deliveryDtos.add(deliveryDto);
+        }
+        return deliveryDtos;
     }
 }

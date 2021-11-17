@@ -2,12 +2,10 @@ package com.shopify.dto;
 
 import com.shopify.model.Delivery;
 
-import java.util.List;
-
 public class DeliveryDto {
 
     private Delivery delivery;
-    private List<CartItemDto> cartItemDtos;
+    private long total;
 
     public Delivery getDelivery() {
         return delivery;
@@ -17,11 +15,11 @@ public class DeliveryDto {
         this.delivery = delivery;
     }
 
-    public List<CartItemDto> getCartItemDtos() {
-        return cartItemDtos;
+    public long getTotal() {
+        return total;
     }
 
-    public void setCartItemDtos(List<CartItemDto> cartItemDtos) {
-        this.cartItemDtos = cartItemDtos;
+    public void setTotal(long total) {
+        this.total = total;
     }
 }

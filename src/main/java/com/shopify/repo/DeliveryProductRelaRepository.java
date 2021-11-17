@@ -4,8 +4,10 @@ import com.shopify.model.DeliveryProductRelation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface DeliveryProductRelaRepository extends JpaRepository<DeliveryProductRelation, Integer> {
 
-    DeliveryProductRelation findByDelivery_Id(Integer deliveryId);
+    List<DeliveryProductRelation> findAllByDelivery_Id(Integer deliveryId);
 }
