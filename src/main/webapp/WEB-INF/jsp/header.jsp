@@ -98,7 +98,7 @@
                     </li>
                     <c:if test="${username != null && username.length() > 0}">
                         <li>
-                            <h5><a href="/userInfo">${username}</a></h5>
+                            <h5><a>${username}</a></h5>
                         </li>
                         <li>
                             <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>

@@ -60,7 +60,7 @@ public class CartItemService {
         } else {
             cart = cartRepository.findByUser_Id(user.getId());
         }
-        CartItem cartItem = cartItemRepository.findByProduct_Id(productId);
+        CartItem cartItem = cartItemRepository.findByProduct_IdAndCart_Id(productId, cart.getId());
         if (Objects.nonNull(cartItem)) {
             int quantity = cartItem.getQuantity() + 1;
             cartItem.setQuantity(quantity);
@@ -91,5 +91,9 @@ public class CartItemService {
             cartItemDtos.add(cartItemDto);
         }
         return new CartDto(cartItemDtos, total);
+    }
+
+    public void deleteById(Integer id) {
+        cartItemRepository.deleteById(id);
     }
 }

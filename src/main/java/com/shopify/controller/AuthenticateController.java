@@ -51,10 +51,10 @@ public class AuthenticateController {
     @GetMapping("/login")
     public String login(Model model, String error, String logout, HttpServletRequest request) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
 
         if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+            model.addAttribute("message", "Bạn vừa đăng xuất thành công");
         request.setAttribute("", "");
         return "login";
     }

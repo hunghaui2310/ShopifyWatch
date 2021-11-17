@@ -51,7 +51,7 @@
                                 <%--                            <td><p>L</p></td>--%>
                             <td><input type="number" onchange="changeQuantity(${cart.id})" id="val_${cart.id}" value="${cart.quantity}" min="1"></td>
                             <td><p>${cart.totalMoney} <sup>đ</sup></p></td>
-                            <td><span>X</span></td>
+                            <td><button class="btn" id="modal_${cart.id}" onclick="openModalDelete(${cart.id})"><i class="fas fa-trash"></i></button></td>
                         </tr>
                     </c:forEach>
                     <%--                    <tr>--%>
@@ -101,18 +101,38 @@
                 <%--                </div>--%>
             </div>
         </div>
+
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Xác thực xóa</h5>
+                    <button type="button" id="btn-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-close2" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteProduct()">Xóa</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
 <script type="text/javascript">
     const mapValByProduct = new Map();
+    const base_url = window.location.origin;
 
     function changeQuantity(cartItemId) {
         const quantity = document.getElementById('val_' + cartItemId).value;
         mapValByProduct.set(cartItemId, quantity);
     }
     function updateCart() {
-        var base_url = window.location.origin;
         const cartItems = [];
         for (const [key, value] of mapValByProduct) {
             cartItems.push({cartItemId: key, quantity: value})
@@ -123,6 +143,55 @@
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(cartItems),
+            success: function (res) {
+                if (res === true) {
+                    location.reload();
+                } else {
+                    window.location.href = base_url + '/login';
+                }
+            }
+        });
+    }
+
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var btnClose = document.getElementById("btn-close");
+    var btnClose2 = document.getElementById("btn-close2");
+
+    // When the user clicks on <span> (x), close the modal
+    btnClose.onclick = function() {
+        modal.style.display = "none";
+    };
+    btnClose2.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    var idCart;
+    function openModalDelete(id) {
+        idCart = id;
+        // Get the button that opens the modal
+        const btn = document.getElementById("modal_" + id);
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        };
+    }
+
+    function deleteProduct() {
+        if (!idCart) { return; }
+        $.ajax({
+            type: "DELETE",
+            url: base_url + '/cart/delete/' + idCart,
+            dataType: "json",
+            contentType: 'application/json',
             success: function (res) {
                 if (res === true) {
                     location.reload();

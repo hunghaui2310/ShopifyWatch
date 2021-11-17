@@ -40,4 +40,10 @@ public class CartRest {
         }
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteCart(@PathVariable Integer id) {
+        cartItemService.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
 }
