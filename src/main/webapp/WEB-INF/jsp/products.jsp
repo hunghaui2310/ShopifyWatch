@@ -29,9 +29,9 @@
     <div class="row product-content">
         <c:forEach items="${products}" var="product">
             <div class="product-related-item">
-                <img src="${contextPath}/resources/images/${product.image}" alt="">
+                <img src="${contextPath}/resources/images/${product.image}" alt="" href="product/${product.id}">
                 <div class="d-flex justify-content-center align-items-center">
-                    <h1>${product.name}</h1>
+                    <h1><a href="product/${product.id}">${product.name}</a></h1>
                     <button title="Thêm vào giỏ" class="ml-2 btn" onclick="addToCart(${product.id})"><i title="Thêm vào giỏ"
                                                                                                     class="fas fa-shopping-cart"></i>
                     </button>

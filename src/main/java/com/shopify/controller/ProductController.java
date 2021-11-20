@@ -1,5 +1,6 @@
 package com.shopify.controller;
 
+import com.shopify.dto.ProductDetailDTO;
 import com.shopify.model.Product;
 import com.shopify.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -54,6 +52,14 @@ public class ProductController {
         Page<Product> products = productService.searchByName(page - 1, SIZE, name);
         appendDataToProduct(modelMap, products.getContent(), products.getTotalPages(), page);
         return "products";
+    }
+
+    @GetMapping("/{id}")
+    public String getDetailProduct(ModelMap modelMap, @PathVariable Integer id) {
+        ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
+        modelMap.addAttribute("product", productDetailDTO);
+        modelMap.addAttribute("productsRelated", productService.findByCategory(0, 5, productDetailDTO.getProduct().getCategory().getId()).getContent());
+        return "product-detail";
     }
 
     private void appendDataToProduct(Model modelMap, List<Product> products, int totalPage, int currentPage) {
