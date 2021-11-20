@@ -56,8 +56,8 @@
                     <input type="number" min="0" value="1">
                 </div>
 <%--                <p style="color: red;">Vui lòng chọn size</p>--%>
-                <div class="product-content-right-product-button">
-                    <button><i class="fas fa-shopping-cart" onclick="addToCart(${product.product.id})"></i> <p>THÊM VÀO GIỎ</p></button>
+                <div class="product-content-right-product-button" onclick="addToCart(${product.product.id})">
+                    <button><i class="fas fa-shopping-cart"></i> <p>THÊM VÀO GIỎ</p></button>
                 </div>
 <%--                <div class="product-content-right-product-icon">--%>
 <%--                    <div class="product-content-right-product-icon-item">--%>

@@ -29,7 +29,7 @@
     <div class="row product-content">
         <c:forEach items="${products}" var="product">
             <div class="product-related-item">
-                <img src="${contextPath}/resources/images/${product.image}" alt="" href="product/${product.id}">
+                <a href="product/${product.id}"><img src="${contextPath}/resources/images/${product.image}" alt=""></a>
                 <div class="d-flex justify-content-center align-items-center">
                     <h1><a href="product/${product.id}">${product.name}</a></h1>
                     <button title="Thêm vào giỏ" class="ml-2 btn" onclick="addToCart(${product.id})"><i title="Thêm vào giỏ"
@@ -97,12 +97,6 @@
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
 <script>
-    $(document).ready(function(){
-            // Passing option
-            $("#myToast").toast({
-                autohide: false
-            });
-    });
     function addToCart(productId) {
         var base_url = window.location.origin;
         var finalUrl = base_url + '/cart/addToCart/' + productId;
