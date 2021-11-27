@@ -31,14 +31,20 @@
             <h3>Quản lý thể loại</h3>
             <div>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary">Thêm mới thể loại</button>
+                    <a type="button" class="btn btn-primary" href="/admin/category/new">Thêm mới</a>
+                    <a class="btn btn-secondary ml-3" href="/admin/category">Quay lại</a>
                 </div>
                 <form:form action="saveCategory" method="post" modelAttribute="category">
                     <div class="form-group">
-                        <form:label path="name">Password</form:label>
-                        <form:input type="text" class="form-control" placeholder="Tên thể loại" path="name"/>
+                        <form:hidden path="id" />
                     </div>
-                    <form:button type="submit" class="btn btn-primary">Lưu</form:button>
+                    <fieldset class="form-group">
+                        <form:label path="name">Tên</form:label>
+                        <form:input type="text" class="form-control" placeholder="Tên thể loại" path="name" required="required"/>
+                    </fieldset>
+                    <div class="mt-3 d-flex justify-content-center">
+                        <form:button type="submit" class="btn btn-primary">Lưu</form:button>
+                    </div>
                 </form:form>
             </div>
         </div>

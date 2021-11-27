@@ -47,8 +47,8 @@
                         <td>${category.name}</td>
                         <td>
                             <div class="d-flex">
-                                <button class="btn" title="Sửa"><i class="fas fa-edit"></i></button>
-                                <button class="btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                <a class="btn" title="Sửa" href="/admin/category/update/${category.id}"><i class="fas fa-edit"></i></a>
+                                <button class="btn" title="Xóa" id="modal_category_${category.id}" onclick="openModalDelete(${category.id})"><i class="fas fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -57,8 +57,71 @@
                 </table>
             </div>
         </div>
+        <div id="modalCategory" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content w-60">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Xác thực xóa</h5>
+                    <button type="button" id="btn-close-c" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa thể loại này không?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-close-c2" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteCategory()">Xóa</button>
+                </div>
+            </div>
+
+        </div>
     </div>
     <!-- /#page-content-wrapper -->
 </div>
+<script>
+    const base_url = window.location.origin;
+    var modal = document.getElementById("modalCategory");
+    var btnClose = document.getElementById("btn-close-c");
+    var btnClose2 = document.getElementById("btn-close-c2");
+    btnClose.onclick = function() {
+        modal.style.display = "none";
+    };
+    btnClose2.onclick = function() {
+        modal.style.display = "none";
+    };
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+    var idCategory;
+    function openModalDelete(id) {
+        idCategory = id;
+        // Get the button that opens the modal
+        const btn = document.getElementById("modal_category_" + id);
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        };
+    }
+
+    function deleteCategory() {
+        if (!idCategory) { return; }
+        $.ajax({
+            type: "DELETE",
+            url: base_url + '/admin/category/' + idCategory,
+            dataType: "json",
+            contentType: 'application/json',
+            success: function (res) {
+                if (res === true) {
+                    location.reload();
+                } else {
+                    window.location.href = base_url + '/login';
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

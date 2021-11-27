@@ -110,9 +110,7 @@
     </div>
 </secsion>
 <script>
-    function search(e) {
-        console.log('called search', e);
-    }
+
 </script>
 </body>
 </html>
